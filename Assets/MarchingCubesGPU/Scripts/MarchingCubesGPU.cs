@@ -128,6 +128,7 @@ namespace MarchingCubesGPUProject
         {
             //Since mesh is in a buffer need to use DrawProcedual called from OnPostRender
             m_drawBuffer.SetBuffer("_Buffer", m_meshBuffer);
+            m_drawBuffer.SetMatrix("_ModelMatrix", transform.localToWorldMatrix);
             m_drawBuffer.SetPass(0);
 
             Graphics.DrawProceduralNow(MeshTopology.Triangles, SIZE);

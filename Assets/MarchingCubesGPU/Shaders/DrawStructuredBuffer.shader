@@ -21,6 +21,7 @@ Shader "MarchingCubesGPUProject/DrawStructuredBuffer"
 			};
 
 			uniform StructuredBuffer<Vert> _Buffer;
+			uniform float4x4 _ModelMatrix;
 
 			struct v2f 
 			{
@@ -33,8 +34,10 @@ Shader "MarchingCubesGPUProject/DrawStructuredBuffer"
 				Vert vert = _Buffer[id];
 
 				v2f OUT;
-				OUT.pos = UnityObjectToClipPos(float4(vert.position.xyz, 1));
 				
+				//OUT.pos = UnityObjectToClipPos(float4(vert.position.xyz, 1));
+				OUT.pos = mul(UNITY_MATRIX_VP, mul(_ModelMatrix, vert.position));
+
 				OUT.col = dot(float3(0,1,0), vert.normal) * 0.5 + 0.5;
 				
 				return OUT;
