@@ -10,7 +10,6 @@ namespace MarchingCubesGPUProject
 {
     public class MarchingCubesGPU_4DNoise : MonoBehaviour
     {
-
         //The size of the voxel array for each dimension
         const int N = 40;
 
@@ -45,7 +44,7 @@ namespace MarchingCubesGPUProject
         {
             //There are 8 threads run per group so N must be divisible by 8.
             if (N % 8 != 0)
-                throw new System.ArgumentException("N must be divisible be 8");
+                throw new System.ArgumentException("N must be divisible by 8");
 
             //Holds the voxel values, generated from perlin noise.
             m_noiseBuffer = new ComputeBuffer(N * N * N, sizeof(float));
@@ -70,7 +69,6 @@ namespace MarchingCubesGPUProject
             //Make the perlin noise, make sure to load resources to match shader used.
             perlin = new GPUPerlinNoise(m_seed);
             perlin.LoadResourcesFor4DNoise();
-
         }
 
 

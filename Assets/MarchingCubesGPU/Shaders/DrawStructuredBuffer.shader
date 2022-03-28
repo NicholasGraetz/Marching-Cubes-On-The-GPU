@@ -2,11 +2,17 @@
 
 Shader "MarchingCubesGPUProject/DrawStructuredBuffer" 
 {
+	Properties
+	{
+		_BaseColor("Base Color", Color) = (1,1,1,1)
+		_BaseMap("Base Map", 2D) = "white" {}
+	}
+
 	SubShader 
 	{
 		Pass 
 		{
-			Cull back
+			Cull Off
 
 			CGPROGRAM
 			#include "UnityCG.cginc"
@@ -19,6 +25,10 @@ Shader "MarchingCubesGPUProject/DrawStructuredBuffer"
 				float4 position;
 				float3 normal;
 			};
+			
+			uniform float4 _BaseColor;
+			uniform sampler2D _BaseMap;
+			uniform float4 _BaseMap_ST;
 
 			uniform StructuredBuffer<Vert> _Buffer;
 			uniform float4x4 _ModelMatrix;
@@ -38,7 +48,9 @@ Shader "MarchingCubesGPUProject/DrawStructuredBuffer"
 				//OUT.pos = UnityObjectToClipPos(float4(vert.position.xyz, 1));
 				OUT.pos = mul(UNITY_MATRIX_VP, mul(_ModelMatrix, vert.position));
 
-				OUT.col = dot(float3(0,1,0), vert.normal) * 0.5 + 0.5;
+				float4 color = dot(float3(0,1,0), vert.normal) * 0.5 + 0.5;
+				color = color * _BaseColor;
+				OUT.col = color;
 				
 				return OUT;
 			}

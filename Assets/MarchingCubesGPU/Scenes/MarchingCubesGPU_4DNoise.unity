@@ -206,6 +206,104 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &434477337
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 434477339}
+  - component: {fileID: 434477338}
+  m_Layer: 0
+  m_Name: MarchingCubesVolume
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &434477338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 434477337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19b6bd2571e56394a9c5e9e93b97e8f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_seed: 1
+  m_drawBuffer: {fileID: 2100000, guid: 99125ff1a74b745489673a89bac7fb46, type: 2}
+  m_perlinNoise: {fileID: 7200000, guid: b82421ddd2feaaf4190e9b5b7b09af69, type: 3}
+  m_marchingCubes: {fileID: 7200000, guid: cbefffa4c1505b54689332f612d627e6, type: 3}
+  m_normals: {fileID: 7200000, guid: 8f22bc50351139e4c8c6f8222864a4c2, type: 3}
+--- !u!4 &434477339
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 434477337}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1055609351
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1055609353}
+  - component: {fileID: 1055609352}
+  m_Layer: 0
+  m_Name: MarchingCubes (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1055609352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1055609351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efce3014af9c6194197849dd056e3f11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_seed: 1
+  m_speed: 2
+  m_drawBuffer: {fileID: 2100000, guid: 99125ff1a74b745489673a89bac7fb46, type: 2}
+  m_perlinNoise: {fileID: 7200000, guid: b82421ddd2feaaf4190e9b5b7b09af69, type: 3}
+  m_marchingCubes: {fileID: 7200000, guid: cbefffa4c1505b54689332f612d627e6, type: 3}
+  m_normals: {fileID: 7200000, guid: 8f22bc50351139e4c8c6f8222864a4c2, type: 3}
+  m_clearBuffer: {fileID: 7200000, guid: b8d7186c8f575c748a7649baf5e6949a, type: 3}
+--- !u!4 &1055609353
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1055609351}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1470263935
 GameObject:
   m_ObjectHideFlags: 0
@@ -332,6 +430,7 @@ Light:
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!4 &1515404115

@@ -140,7 +140,6 @@ void CSMain(int3 id : SV_DispatchThreadID)
 			_Buffer[idx * 15 + (3 * i + 2)] = CreateVertex(position, centre, size);
 		}
 	}
-
 }
 
 
