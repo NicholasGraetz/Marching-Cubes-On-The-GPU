@@ -10,6 +10,9 @@ namespace MarchingCubesGPUProject
 {
     public class MarchingCubesVolume : MonoBehaviour
     {
+        [SerializeField]
+        private ParticleList particles;
+
         //The size of the voxel array for each dimension
         const int N = 40;
 
@@ -22,13 +25,11 @@ namespace MarchingCubesGPUProject
 
         public Material m_drawBuffer;
 
-        public ComputeShader m_perlinNoise;
-
         public ComputeShader m_marchingCubes;
 
         public ComputeShader m_normals;
 
-        ComputeBuffer m_noiseBuffer, m_meshBuffer;
+        ComputeBuffer m_scalarFieldBuffer, m_meshBuffer;
 
         RenderTexture m_normalsBuffer;
 
@@ -42,8 +43,8 @@ namespace MarchingCubesGPUProject
             if (N % 8 != 0)
                 throw new System.ArgumentException("N must be divisible be 8");
 
-            //Holds the voxel values, generated from perlin noise.
-            m_noiseBuffer = new ComputeBuffer(N * N * N, sizeof(float));
+            //Holds the voxel values.
+            m_scalarFieldBuffer = new ComputeBuffer(N * N * N, sizeof(float));
 
             //Holds the normals of the voxels.
             m_normalsBuffer = new RenderTexture(N, N, 0, RenderTextureFormat.ARGBHalf, RenderTextureReadWrite.Linear);
@@ -76,24 +77,20 @@ namespace MarchingCubesGPUProject
             perlin = new GPUPerlinNoise(m_seed);
             perlin.LoadResourcesFor3DNoise();
 
-            //Make the voxels.
-            m_perlinNoise.SetInt("_Width", N);
-            m_perlinNoise.SetInt("_Height", N);
-            m_perlinNoise.SetFloat("_Frequency", 0.02f);
-            m_perlinNoise.SetFloat("_Lacunarity", 2.0f);
-            m_perlinNoise.SetFloat("_Gain", 0.5f);
-            m_perlinNoise.SetTexture(0, "_PermTable2D", perlin.PermutationTable2D);
-            m_perlinNoise.SetTexture(0, "_Gradient3D", perlin.Gradient3D);
-            m_perlinNoise.SetBuffer(0, "_Result", m_noiseBuffer);
+            //Reads back the mesh data from the GPU and turns it into a standard unity mesh.
+            //ReadBackMesh(m_meshBuffer);
+        }
 
-            m_perlinNoise.Dispatch(0, N / 8, N / 8, N / 8);
+        void Update()
+        {
+            //TODO: Make the voxels.
+
 
             //Make the voxel normals.
             m_normals.SetInt("_Width", N);
             m_normals.SetInt("_Height", N);
-            m_normals.SetBuffer(0, "_Noise", m_noiseBuffer);
+            m_normals.SetBuffer(0, "_Noise", m_scalarFieldBuffer);
             m_normals.SetTexture(0, "_Result", m_normalsBuffer);
-
             m_normals.Dispatch(0, N / 8, N / 8, N / 8);
 
             //Make the mesh verts
@@ -102,21 +99,13 @@ namespace MarchingCubesGPUProject
             m_marchingCubes.SetInt("_Depth", N);
             m_marchingCubes.SetInt("_Border", 1);
             m_marchingCubes.SetFloat("_Target", 0.0f);
-            m_marchingCubes.SetBuffer(0, "_Voxels", m_noiseBuffer);
+            m_marchingCubes.SetBuffer(0, "_Voxels", m_scalarFieldBuffer);
             m_marchingCubes.SetTexture(0, "_Normals", m_normalsBuffer);
             m_marchingCubes.SetBuffer(0, "_Buffer", m_meshBuffer);
             m_marchingCubes.SetBuffer(0, "_CubeEdgeFlags", m_cubeEdgeFlags);
             m_marchingCubes.SetBuffer(0, "_TriangleConnectionTable", m_triangleConnectionTable);
 
             m_marchingCubes.Dispatch(0, N / 8, N / 8, N / 8);
-
-            //Reads back the mesh data from the GPU and turns it into a standard unity mesh.
-            //ReadBackMesh(m_meshBuffer);
-        }
-
-        void Update()
-        {
-
         }
 
         /// <summary>
@@ -136,7 +125,7 @@ namespace MarchingCubesGPUProject
         void OnDestroy()
         {
             //MUST release buffers.
-            m_noiseBuffer.Release();
+            m_scalarFieldBuffer.Release();
             m_meshBuffer.Release();
             m_cubeEdgeFlags.Release();
             m_triangleConnectionTable.Release();

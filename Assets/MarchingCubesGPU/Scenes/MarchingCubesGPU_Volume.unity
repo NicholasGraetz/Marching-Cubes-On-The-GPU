@@ -206,6 +206,50 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &507781840
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 507781841}
+  - component: {fileID: 507781842}
+  m_Layer: 0
+  m_Name: ParticleSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &507781841
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 507781840}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &507781842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 507781840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab5eb705e1d2b2a4e9afdb615a8793a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particlePrefab: {fileID: 1827794791903759658, guid: 289f14e927a38e4458497a7eb4687662, type: 3}
 --- !u!1 &1470263935
 GameObject:
   m_ObjectHideFlags: 0
@@ -232,16 +276,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1470263935}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efce3014af9c6194197849dd056e3f11, type: 3}
+  m_Script: {fileID: 11500000, guid: 19b6bd2571e56394a9c5e9e93b97e8f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_seed: 1
-  m_speed: 2
+  m_seed: 0
   m_drawBuffer: {fileID: 2100000, guid: 99125ff1a74b745489673a89bac7fb46, type: 2}
-  m_perlinNoise: {fileID: 7200000, guid: b82421ddd2feaaf4190e9b5b7b09af69, type: 3}
   m_marchingCubes: {fileID: 7200000, guid: cbefffa4c1505b54689332f612d627e6, type: 3}
   m_normals: {fileID: 7200000, guid: 8f22bc50351139e4c8c6f8222864a4c2, type: 3}
-  m_clearBuffer: {fileID: 7200000, guid: b8d7186c8f575c748a7649baf5e6949a, type: 3}
 --- !u!4 &1470263937
 Transform:
   m_ObjectHideFlags: 0

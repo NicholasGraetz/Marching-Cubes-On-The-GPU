@@ -1,8 +1,14 @@
 fileFormatVersion: 2
 guid: 19b6bd2571e56394a9c5e9e93b97e8f2
 MonoImporter:
+  externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - m_drawBuffer: {fileID: 2100000, guid: 99125ff1a74b745489673a89bac7fb46, type: 2}
+  - m_marchingCubes: {fileID: 7200000, guid: cbefffa4c1505b54689332f612d627e6, type: 3}
+  - m_normals: {fileID: 7200000, guid: 8f22bc50351139e4c8c6f8222864a4c2, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
+  assetBundleName: 
+  assetBundleVariant: 
